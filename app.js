@@ -30,6 +30,10 @@
     });
   });
   if (url && status) status.textContent = '何から始めたらいいか分からない方も、お気軽に。';
+  const header = document.querySelector('.site-header');
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.getElementById('mobile-nav');
   if (toggle && menu) {
@@ -37,7 +41,7 @@
     function close(restoreFocus = false, immediate = false) {
       if (toggle.getAttribute('aria-expanded') !== 'true') return;
       toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = 'メニュー';
+      toggle.querySelector('.menu-label').textContent = 'メニュー';
       menuAnimation?.cancel();
       menuAnimation = immediate ? null : animate(menu, [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-8px)' }], { duration: 160, easing: 'ease-out' });
       if (menuAnimation) menuAnimation.finished.then(() => { menu.hidden = true; }).catch(() => {});
@@ -50,7 +54,7 @@
         menuAnimation?.cancel();
         menu.hidden = false;
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.textContent = '閉じる';
+        toggle.querySelector('.menu-label').textContent = '閉じる';
       }
     });
     menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
