@@ -140,3 +140,17 @@ html.dialog-open{overflow:hidden}
  .demo-first-copy h1{font-size:29px}
  .demo-first-next .button{font-size:13px;padding-inline:14px}
 }
+
+/* 2026-10-02: opening viewport reproduced from the user-provided smartphone animation */
+.zip-hero{min-height:720px;max-width:1180px;margin:auto;padding:80px 28px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}
+.zip-copy h1{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;font-size:clamp(38px,6vw,78px);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin:18px 0;color:#16342c}
+.zip-copy>p:not(.eyebrow){font-size:18px;line-height:1.9;max-width:620px;color:#16342c}
+.zip-cta{display:inline-block;margin-top:20px;background:#0f5a43;color:#fff;padding:17px 24px;border-radius:999px;font-weight:800}
+.zip-phone{width:min(390px,100%);margin:auto;background:#fff;border:10px solid #15211d;border-radius:46px;box-shadow:0 30px 80px #173f2c2b;overflow:hidden}
+.zip-phone-top{background:#075e45;color:#fff;padding:24px 22px 15px;display:flex;flex-direction:column}.zip-phone-top b{font-size:16px}.zip-phone-top small{font-size:11px;margin-top:2px}
+.zip-chat{padding:24px 18px;background:#e8efe9;min-height:480px}
+.zip-bubble{background:#fff;padding:15px;border-radius:18px 18px 18px 5px;max-width:82%;box-shadow:0 3px 10px #0000000c;font-size:14px;line-height:1.65;min-height:68px}
+.zip-composer{margin-top:220px;background:#fff;border-radius:999px;display:flex;align-items:center;gap:10px;padding:8px 10px}.zip-placeholder{flex:1;color:#9aa7a0;font-size:14px}.zip-composer button{border:0;background:#0f5a43;color:#fff;width:36px;height:36px;border-radius:50%;font-size:16px}
+.zip-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}.zip-menu button{border:0;background:#fff;padding:14px 5px;border-radius:10px;font-size:12px;color:#16342c}
+@media(max-width:760px){.zip-hero{grid-template-columns:1fr;padding:58px 20px 72px;gap:42px}.zip-copy{text-align:center}.zip-copy h1{font-size:46px}.zip-phone{width:min(360px,94vw)}}
+@media(max-width:430px){.zip-copy h1{font-size:clamp(37px,11vw,46px);text-wrap:balance}.zip-copy>p:not(.eyebrow){font-size:15px}.zip-phone{width:min(350px,94vw)}}
