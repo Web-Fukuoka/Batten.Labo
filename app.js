@@ -29,7 +29,7 @@
       status.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth', block: 'center' });
     });
   });
-  if (url && status) status.textContent = '何から始めたらいいか分からない方も、お気軽に。';
+  if (url && status) status.textContent = '友だち追加後に、メッセージをお送りください。相談だけでもOKです。';
   const header = document.querySelector('.site-header');
   const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
   updateHeader();
@@ -70,6 +70,81 @@
     matchMedia('(min-width: 801px)').addEventListener('change', event => { if (event.matches) close(false, true); });
     document.body.classList.add('nav-ready');
   }
+  // Enhanced previews retain all samples when JavaScript is unavailable.
+  const sampleButtons = [...document.querySelectorAll('[data-sample]')];
+  const samplePanels = [...document.querySelectorAll('.sample-panel')];
+  if (sampleButtons.length && samplePanels.length) {
+    document.querySelector('.sample-switch').hidden = false;
+    samplePanels.forEach((panel, index) => { panel.hidden = index !== 0; });
+    sampleButtons.forEach(button => button.addEventListener('click', () => {
+      sampleButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      samplePanels.forEach(panel => { panel.hidden = panel.id !== button.dataset.sample; });
+    }));
+  }
+  const sampleDialog = document.getElementById('sample-dialog');
+  const consultDialog = document.getElementById('consult-dialog');
+  let dialogTrigger;
+  const openDialog = (dialog, trigger) => {
+    dialogTrigger = trigger;
+    dialog.showModal();
+    document.documentElement.classList.add('dialog-open');
+  };
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.querySelector('[data-close-dialog]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      const box = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('dialog-open');
+      dialogTrigger?.focus({ preventScroll: true });
+    });
+  });
+  if (sampleDialog?.showModal) {
+    document.body.classList.add('samples-ready');
+    document.querySelectorAll('[data-enlarge]').forEach(button => button.addEventListener('click', () => {
+      const panel = document.getElementById(button.dataset.enlarge);
+      const phone = panel?.querySelector('.demo-phone');
+      if (!phone) return;
+      sampleDialog.querySelector('.dialog-phone').replaceChildren(phone.cloneNode(true));
+      openDialog(sampleDialog, button);
+    }));
+  }
+  if (consultDialog?.showModal) {
+    const message = document.getElementById('consult-message');
+    const copyStatus = document.getElementById('copy-status');
+    document.querySelectorAll('[data-plan]').forEach(link => link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      message.value = link.dataset.plan + 'プランについて相談したいです。\n業種：\n現在のLINE公式アカウント：あり／なし\n困っていること：';
+      copyStatus.textContent = '';
+      consultDialog.querySelector('[data-line]').dataset.planName = link.dataset.plan;
+      openDialog(consultDialog, link);
+    }));
+    document.getElementById('copy-consult').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(message.value);
+        copyStatus.textContent = 'コピーしました。LINEを開いて貼り付けてください。';
+      } catch {
+        message.focus(); message.select();
+        copyStatus.textContent = '相談文を選択しました。端末のコピー操作をご利用ください。';
+      }
+    });
+  }
+  // A privacy-minimal integration hook. No analytics provider or storage is enabled here.
+  document.querySelectorAll('[data-line]').forEach((link, index) => {
+    link.addEventListener('click', () => {
+      const detail = {
+        event: link.dataset.plan ? 'consult_plan_select' : 'line_consult_click',
+        placement: link.dataset.placement || (link.closest('header') ? 'header' : link.closest('.mobile-cta') ? 'mobile-sticky' : 'body'),
+        plan: link.dataset.plan || link.dataset.planName || null,
+        page: location.pathname,
+        button_index: index
+      };
+      window.dispatchEvent(new CustomEvent('batten:analytics', { detail }));
+      if (typeof window.gtag === 'function') window.gtag('event', detail.event, { placement: detail.placement, plan: detail.plan, page_path: detail.page });
+    });
+  });
   // Native details also works without this optional closing effect.
   document.querySelectorAll('details').forEach(details => {
     const summary = details.querySelector('summary');
