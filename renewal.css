@@ -108,3 +108,35 @@ html.dialog-open{overflow:hidden}
 }
 @media(max-width:390px){.conv-copy h1{font-size:31px}.talk-phone{width:100%}.conv-proof{grid-template-columns:1fr}.before-after h3{font-size:21px}.conv-final h2{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.reveal,.talk-row.msg{opacity:1;transform:none;transition:none}.conv-service-grid article:hover{transform:none}}
+
+/* 2026-10-02: LINE talk experience is now the opening scene */
+.demo-first{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 42%,#eef4ea 0,#f7f7f2 48%,#fff 100%);padding:58px 0 76px;min-height:calc(100svh - 96px)}
+.demo-first:before{content:"";position:absolute;width:440px;height:440px;border:1px solid #dfe8dc;border-radius:50%;left:50%;top:46%;transform:translate(-50%,-50%);pointer-events:none}
+.demo-first-inner{position:relative;display:grid;grid-template-columns:1fr;justify-items:center}
+.demo-first-copy{text-align:center;max-width:760px;margin-bottom:30px;position:relative;z-index:2}
+.demo-first-copy h1{font:650 clamp(36px,4.4vw,58px)/1.48 var(--font-heading);letter-spacing:.015em;margin:10px 0 12px;text-wrap:balance}
+.demo-first-copy>p:last-child{font-size:14px;line-height:1.9;color:var(--muted)}
+.demo-first .talk-stage{z-index:2;width:min(420px,100%)}
+.demo-first .talk-phone{transform:none}
+.demo-first .talk-label{right:-18px;top:32px}
+.demo-first-next{position:relative;z-index:2;text-align:center;margin-top:27px}
+.demo-first-next>p{font:600 20px/1.8 var(--font-heading);margin-bottom:15px}
+.demo-first-next>p strong{color:var(--green)}
+.demo-first-next .button{min-width:min(340px,100%)}
+.demo-scroll{display:block;margin-top:13px;font-size:11px;color:var(--muted);font-weight:700}
+@media(max-width:800px){
+ .demo-first{padding:32px 0 58px;min-height:auto}
+ .demo-first:before{width:330px;height:330px;top:48%}
+ .demo-first-copy{margin-bottom:24px}
+ .demo-first-copy h1{font-size:clamp(29px,8vw,38px);line-height:1.55}
+ .demo-first-copy h1 br{display:none}
+ .demo-first-copy>p:last-child{font-size:12px;max-width:330px;margin-inline:auto}
+ .demo-first-copy>p:last-child br{display:none}
+ .demo-first .talk-label{right:0}
+ .demo-first-next>p{font-size:18px}
+}
+@media(max-width:390px){
+ .demo-first{padding-top:24px}
+ .demo-first-copy h1{font-size:29px}
+ .demo-first-next .button{font-size:13px;padding-inline:14px}
+}
