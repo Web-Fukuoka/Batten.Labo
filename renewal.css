@@ -56,3 +56,36 @@ html.dialog-open{overflow:hidden}
   .contact h2,.renewal-faq h2,.price-page h1{word-break:auto-phrase;text-wrap:balance}
   .header-cta{white-space:nowrap}
 }
+
+
+/* 2026-10-01: mobile editorial rhythm — avoid orphaned 1–3 character lines */
+@media(max-width:800px){
+  /* Service problem cards: keep each title visually to two lines where practical. */
+  .problem-grid h3{
+    font-size:clamp(20px,5.35vw,22px);
+    line-height:1.72;
+    letter-spacing:0;
+    text-wrap:balance;
+  }
+
+  /* About heading was wrapping to three lines on ~390px iPhone widths. */
+  .about-grid h2{
+    font-size:clamp(23px,6.15vw,26px);
+    line-height:1.72;
+    letter-spacing:0;
+    text-wrap:balance;
+  }
+  .about-grid h2 br{display:none}
+
+  /* Slightly improve readable measure without forcing awkward manual breaks. */
+  .problem-grid p,
+  .about-grid>div>p:not(.eyebrow){
+    line-height:1.95;
+    letter-spacing:.015em;
+    text-wrap:pretty;
+  }
+}
+@media(max-width:390px){
+  .problem-grid h3{font-size:20px}
+  .about-grid h2{font-size:23px}
+}
