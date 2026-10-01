@@ -25,3 +25,34 @@ html.dialog-open{overflow:hidden}
 .sample-dialog .demo-phone{width:340px;max-width:100%}.sample-dialog .message-card img{height:150px}.sample-dialog .chat-bubble{font-size:12px}.sample-dialog .message-card strong{font-size:14px}.sample-dialog .message-card small{font-size:10px}.sample-dialog .richmenu b{font-size:12px}.sample-dialog .richmenu>div{padding-block:14px}.sample-dialog .phone-title{font-size:16px}.sample-dialog .phone-bottom{font-size:12px}
 @media(max-width:360px){.sample-dialog .message-card img{height:110px}.sample-dialog .chat-bubble{font-size:10px}.sample-dialog .message-card strong{font-size:11px}.sample-dialog .richmenu b{font-size:10px}.sample-dialog .phone-title{font-size:13px}}
 @media(max-width:800px){.sample-visual{order:-1}}
+
+
+/* 2026-10-01: Japanese typography / responsive line-break polish */
+:where(h1,h2,h3,p,li,dd,dt,summary,a,button){
+  line-break:strict;
+  overflow-wrap:break-word;
+}
+:where(h1,h2,h3,.hero-lead,.section-intro p,.plan-desc,.sample-copy>p,.about-grid p,.contact p){
+  text-wrap:pretty;
+  word-break:auto-phrase;
+}
+.hero-copy h1{white-space:normal}
+.header-cta,.button,.quiet-button,.plan-price,.summary-amount,.starting-price{white-space:nowrap}
+.problem-grid h3,.sample-copy h3,.about-grid h2,.flow-grid h3{word-break:auto-phrase}
+@media(max-width:800px){
+  .hero-lead br{display:none}
+  .sample-copy h3 br{display:none}
+  .about-grid h2 br{display:none}
+  .section-intro h2 br{display:none}
+  .price-lead br{display:none}
+  .section-lead br:not(.mobile){display:none}
+  .plan-card .button{white-space:normal;text-wrap:balance;min-height:54px}
+  .option-list dt,.option-list dd{word-break:auto-phrase}
+}
+@media(max-width:430px){
+  .hero-copy h1{font-size:clamp(29px,9vw,38px);text-wrap:balance}
+  .hero-copy h1 br{display:none}
+  .hero-copy h1 em{display:inline}
+  .contact h2,.renewal-faq h2,.price-page h1{word-break:auto-phrase;text-wrap:balance}
+  .header-cta{white-space:nowrap}
+}
