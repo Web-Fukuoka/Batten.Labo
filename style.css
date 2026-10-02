@@ -77,3 +77,10 @@ body{line-break:strict;word-break:normal;overflow-wrap:break-word}
 @keyframes headline-type{from{opacity:0}to{opacity:1}}
 .motion-off .hero h1 .type-char{animation:none;opacity:1}
 @media(prefers-reduced-motion:reduce){.js-motion .hero h1 .type-char{animation:none;opacity:1}}
+
+.js-motion .hero .eyebrow{animation:partner-fade .9s ease-out both}
+@keyframes partner-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.motion-off .hero .eyebrow{animation:none;opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js-motion .hero .eyebrow{animation:none;opacity:1;transform:none}}
+
+.js-motion .hero h1.headline-typed .type-char{animation:none;opacity:1}

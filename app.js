@@ -34,11 +34,12 @@ let characterIndex=0;
     const fragment=document.createDocumentFragment();
     for(const character of [...node.textContent]){
       const span=document.createElement('span');span.className='type-char';span.textContent=character;
-      span.style.setProperty('--type-delay',(200+characterIndex++*65)+'ms');fragment.append(span);
+      span.style.setProperty('--type-delay',(600+characterIndex++*110)+'ms');fragment.append(span);
     }
     node.replaceWith(fragment);
   });
 });
+setTimeout(()=>headline.classList.add('headline-typed'),700+characterIndex*110);
 $('.motion-toggle').addEventListener('click', () => setMotion(!motionOff));
 media.addEventListener('change', event => setMotion(event.matches));
 let scrollPending = false;
