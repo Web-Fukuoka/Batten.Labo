@@ -69,5 +69,11 @@ body{line-break:strict;word-break:normal;overflow-wrap:break-word}
 .mini-chat>div{min-width:0;text-wrap:wrap;line-break:strict;}
 
 /* A marker beneath the key promise, without changing heading dimensions. */
-.return-highlight{color:var(--dark);background:linear-gradient(transparent 66%,#bde9b4 66%,#bde9b4 92%,transparent 92%);-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+.return-highlight{color:var(--dark);background:linear-gradient(transparent 89%,#bde9b4 89%,#bde9b4 98%,transparent 98%);-webkit-box-decoration-break:clone;box-decoration-break:clone;}
 
+
+/* Reveal characters without changing text flow or reserving a moving cursor. */
+.js-motion .hero h1 .type-char{animation:headline-type .01s step-end both;animation-delay:var(--type-delay)}
+@keyframes headline-type{from{opacity:0}to{opacity:1}}
+.motion-off .hero h1 .type-char{animation:none;opacity:1}
+@media(prefers-reduced-motion:reduce){.js-motion .hero h1 .type-char{animation:none;opacity:1}}

@@ -22,6 +22,23 @@ if ('IntersectionObserver' in window) {
   $$('.reveal').forEach(el => observer.observe(el));
   setMotion(motionOff);
 }
+// Keep the complete heading available to assistive technology during the reveal.
+const headline=$('.hero h1');
+headline.setAttribute('aria-label',headline.textContent);
+let characterIndex=0;
+[...headline.children].forEach(line=>{
+  line.setAttribute('aria-hidden','true');
+  const walker=document.createTreeWalker(line,NodeFilter.SHOW_TEXT);
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(node=>{
+    const fragment=document.createDocumentFragment();
+    for(const character of [...node.textContent]){
+      const span=document.createElement('span');span.className='type-char';span.textContent=character;
+      span.style.setProperty('--type-delay',(200+characterIndex++*65)+'ms');fragment.append(span);
+    }
+    node.replaceWith(fragment);
+  });
+});
 $('.motion-toggle').addEventListener('click', () => setMotion(!motionOff));
 media.addEventListener('change', event => setMotion(event.matches));
 let scrollPending = false;
