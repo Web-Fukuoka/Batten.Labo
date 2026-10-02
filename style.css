@@ -15,3 +15,50 @@
 @media(max-width:599px){.phone{height:638px}.visual-ground{min-height:0}.rich-menu button{min-height:89px}.rich-menu button b{font-size:11px}.rich-example-tile{min-height:100px}.journey-card .mini-chat,.journey-card .mini-coupon{min-height:174px}.bubble{max-width:calc(100vw - 153px)}}
 @media(max-width:359px){.menu-signature>span{font-size:22px}.menu-signature>small{font-size:6px;letter-spacing:.7px;max-width:115px}.rich-menu button b{font-size:10px}.rich-menu button small{font-size:7px;letter-spacing:.4px}.menu-buttons{gap:4px;padding-inline:5px}.rich-example-tile b{font-size:11px}.rich-example .menu-signature>small{font-size:6px}}
 .phone .bubble{max-width:calc(100% - 35px);text-wrap:pretty}
+/* Typography: semantic phrases, comfortable reading measure, and room for text scaling. */
+:root{--body-size:1rem;--body-leading:1.95}
+body{line-break:strict;word-break:normal;overflow-wrap:break-word}
+.phrase{display:inline-block;max-inline-size:100%;vertical-align:baseline;overflow-wrap:break-word}
+.hero h1{font-size:clamp(1.875rem,10cqi,3rem);line-height:1.5;letter-spacing:-.025em;text-wrap:balance}
+.headline-start,.headline-end{white-space:normal;display:block;overflow-wrap:break-word}
+.hero h1 em{font-size:1.08em;letter-spacing:-.035em;margin-inline:.04em}
+.hero-lead{font-size:1.0625rem;line-height:1.95;max-inline-size:32em;letter-spacing:0}
+.hero-lead .sentence{display:block}.hero-description{font-size:var(--body-size);line-height:var(--body-leading);max-inline-size:30em;text-wrap:pretty}
+.section-title h2{font-size:clamp(1.625rem,2.8vw,2.5rem);line-height:1.65;letter-spacing:-.025em;text-wrap:balance;max-inline-size:26em}
+.intro-section .section-title h2>.phrase{display:block}.intro-section .section-title h2 .green{display:block}
+.section-copy{font-size:var(--body-size);line-height:var(--body-leading);max-inline-size:32em}.section-copy p+p{margin-block-start:1.15em}
+.approach-item p,.journey-card p,.flow-grid p,.faq-list details p{font-size:var(--body-size);line-height:var(--body-leading);max-inline-size:36em;text-wrap:pretty}
+.approach-item h3,.journey-card h3,.flow-grid h3{font-size:1.3125rem;line-height:1.65;letter-spacing:-.02em;text-wrap:balance}
+.journey-card h3{max-inline-size:18em}.journey-card h3 .phrase{display:block}
+.hero-buttons .button,.plan-button{font-size:1rem}.hero-buttons .button{padding-inline:22px}.hero-buttons{align-items:center}
+.starting-price{column-gap:12px;row-gap:7px}.starting-price strong{white-space:nowrap;font-size:2rem}.starting-price>span{font-size:.8125rem;white-space:normal}
+.pricing-heading>p{max-inline-size:30em;font-size:1rem;line-height:1.95}.tax-label{font-size:.8125rem;line-height:1.8}
+.plan-description,.plan-purpose{font-size:1rem;line-height:1.85}.plan-description{min-height:3.7em}.plan-purpose{min-height:5em}.plan-price{white-space:nowrap;font-size:2.75rem;line-height:1.2}.plan-price>span{font-size:1rem}
+.support-card h4{font-size:1.125rem}.support-card>p{white-space:nowrap;font-size:2.125rem}.support-card>p span{font-size:.875rem}
+.scope-note{font-size:.875rem;line-height:1.9}.section-note,.calculator-note{font-size:.8125rem;line-height:1.9}
+.calculator-intro h3{font-size:1.5625rem;line-height:1.6;max-inline-size:15em}.calculator-controls label,.calculator select{font-size:1rem}.calculator-result>small{font-size:.875rem;line-height:1.75}.calculator-result>p{white-space:normal}.calculator-result strong{white-space:nowrap}.calculator-result .button{font-size:.9375rem}
+.faq-list summary{font-size:1rem;line-height:1.85}.contact-inner h2{font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.65;max-inline-size:18em;text-wrap:balance}.contact-inner>p{font-size:1rem;line-height:1.95}.contact-inner .button{font-size:1rem}
+.header .motion-toggle{font-size:.75rem;line-height:1.5;width:auto;white-space:nowrap;min-height:44px;padding-inline:4px}.header-actions{min-width:0}.desktop-nav{flex-wrap:wrap}.desktop-nav a{white-space:nowrap}
+.phone .bubble{font-size:.8125rem;line-height:1.8}.phone{height:676px}.phone .rich-menu button b{font-size:.75rem}.phone-head b{font-size:.875rem}.phone-head>div{min-width:0}.phone-head small{font-size:.625rem}.menu-signature{min-width:0}.menu-signature>small{overflow-wrap:normal}.reply-options button{font-size:.75rem;min-height:38px}.chat-coupon{max-width:100%}
+.rich-example-tile b{font-size:.8125rem}.rich-example-tile small{font-size:.5rem}.rich-example-grid{min-width:0}.menu-buttons button,.rich-example-tile{min-width:0}.rich-example-tile b,.rich-menu button b{white-space:normal;text-wrap:balance}
+.mini-chat>div{font-size:.875rem;line-height:1.9;text-wrap:pretty}.rich-example .menu-signature>small{max-width:48%;font-size:.4375rem}
+@media(min-width:1000px){.plan-card{display:flex;flex-direction:column}.plan-button{margin-top:auto}.plan-price{margin-block:24px}.plan-description{min-height:3.7em}.plan-purpose{margin-block:0 22px}.calculator-intro h3 .phrase{display:block}}
+@media(min-width:600px) and (max-width:999px){.plan-description{min-height:0}.plan-purpose{min-height:0}.plan-price{font-size:2.75rem}.hero-copy{max-inline-size:38em}.hero-description{max-inline-size:32em}}
+@media(max-width:599px){
+.hero h1{font-size:clamp(1.875rem,10cqi,2.5rem);line-height:1.55;margin-bottom:22px}.hero-lead{font-size:1rem;margin-bottom:18px}.hero-lead .sentence{display:inline}.hero-lead .sentence+.sentence:before{content:" "}.hero-description{max-inline-size:100%;font-size:1rem}
+.section-title h2,.faq-section .section-title h2{font-size:1.625rem;line-height:1.65}.intro-section .section-title h2 .green>.phrase{display:inline-block}
+.approach-item h3,.journey-card h3,.flow-grid h3{font-size:1.25rem}.approach-item p,.journey-card p,.flow-grid p,.faq-list details p,.section-copy{font-size:1rem}
+.hero-buttons{display:flex;flex-direction:column;align-items:stretch;gap:16px}.hero-buttons .button{font-size:1rem;min-height:54px;width:100%;padding-inline:14px}.hero-buttons .text-button{font-size:.9375rem;text-align:center;align-self:center;min-height:32px;display:flex;align-items:center}
+.starting-price{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:10px;row-gap:5px}.starting-price>span:first-child{grid-column:1/-1;font-size:.8125rem}.starting-price strong{font-size:2rem}.starting-price>span:last-child{font-size:.8125rem}.hero-footnote{font-size:.8125rem;line-height:1.8}
+.plan-description,.plan-purpose{font-size:1rem;min-height:0}.plan-price{font-size:2.75rem}.plan-button{font-size:1rem;min-height:50px}.plan-card,.plan-card.featured{padding:24px}.plan-card h3{font-size:1.5rem}
+.support-card{display:grid;grid-template-columns:1fr;gap:13px}.support-card h4{font-size:1.125rem}.support-card>p{font-size:2.125rem}.support-card button{font-size:.875rem;justify-self:start}.support-heading h3{font-size:1.5rem}
+.pricing-heading>p{font-size:1rem}.price-category{flex-wrap:wrap}.price-category h3{font-size:1.0625rem}.calculator{padding:22px}.calculator-controls label,.calculator select{font-size:1rem}.calculator-result>p{font-size:.9375rem}.calculator-result strong{font-size:2.5rem}.calculator-result .button{font-size:.9375rem;white-space:normal}.calculator-note{font-size:.8125rem}.scope-note{font-size:.875rem}
+.flow-grid{row-gap:26px}.flow-grid article{grid-template-columns:32px minmax(0,1fr);column-gap:12px}.flow-grid article>span{font-size:1.625rem}.flow-grid h3{font-size:1.25rem}
+.faq-list summary{font-size:1rem;padding-right:29px}.faq-list summary:after{font-size:1.125rem}.contact-inner h2{font-size:1.625rem;max-inline-size:100%}.contact-inner>p{font-size:1rem}.contact-inner>p br{display:none}.contact-inner .button{font-size:.9375rem}
+.phone{width:min(336px,calc(100vw - 40px));height:680px}.visual-ground{padding-block:22px}.phone .bubble{font-size:.8125rem}.phone .rich-menu button b{font-size:.75rem}.demo-note{font-size:.75rem}.industry-tabs button{font-size:.8125rem;white-space:normal}.visual-label{gap:12px}.visual-label>span:first-child{font-size:.6875rem}
+.header-actions{gap:9px}.header .button{font-size:.75rem;padding-inline:12px}.header .motion-toggle{font-size:.6875rem}.menu-signature>small{font-size:.4375rem}.menu-signature>span{font-size:1.5rem}.rich-example-tile b{font-size:.8125rem}.rich-example-tile{padding-inline:2px}
+.footer>p{font-size:.8125rem}.footer>p small{font-size:.75rem}.footer{padding-bottom:124px}.mobile-cta{gap:10px}.mobile-cta>a{white-space:normal;font-size:.8125rem}.mobile-cta .button{font-size:.8125rem;white-space:normal}
+}
+@media(max-width:399px){.header-actions>.button{display:none}.header-actions{gap:18px}.header .motion-toggle{font-size:.75rem}.phone .rich-menu button b{font-size:.6875rem}.rich-example-tile b{font-size:.75rem}.rich-example .menu-signature>span{font-size:1.375rem}.rich-example .menu-signature>small{letter-spacing:.5px}.journey-card{padding:20px}.phone-head b{font-size:.8125rem}.section-wrap{padding-inline:18px}.hero h1{font-size:clamp(1.875rem,10cqi,2.5rem)}}
+@media(prefers-reduced-motion:reduce){.phrase{transition:none}}
+@media(max-width:599px){.hero-lead .sentence{display:block}.hero-lead .sentence+.sentence:before{content:none}}
