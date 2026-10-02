@@ -62,3 +62,8 @@ body{line-break:strict;word-break:normal;overflow-wrap:break-word}
 @media(max-width:399px){.header-actions>.button{display:none}.header-actions{gap:18px}.header .motion-toggle{font-size:.75rem}.phone .rich-menu button b{font-size:.6875rem}.rich-example-tile b{font-size:.75rem}.rich-example .menu-signature>span{font-size:1.375rem}.rich-example .menu-signature>small{letter-spacing:.5px}.journey-card{padding:20px}.phone-head b{font-size:.8125rem}.section-wrap{padding-inline:18px}.hero h1{font-size:clamp(1.875rem,10cqi,2.5rem)}}
 @media(prefers-reduced-motion:reduce){.phrase{transition:none}}
 @media(max-width:599px){.hero-lead .sentence{display:block}.hero-lead .sentence+.sentence:before{content:none}}
+
+/* Chat copy follows natural message lengths, with demo guidance outside the conversation. */
+.phone .bubble{ text-wrap:wrap; }
+.chat-demo-notice{margin:12px 4px 4px;padding:9px 10px;border-radius:8px;background:#ffffffb8;color:#43545a;font-size:.6875rem;line-height:1.7;text-align:center;}
+.mini-chat>div{min-width:0;text-wrap:wrap;line-break:strict;}

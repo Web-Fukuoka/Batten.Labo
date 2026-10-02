@@ -118,9 +118,13 @@ function showChat(scene='welcome',focus=false) {
     choices(data.options.map(option=>[option,()=>{
       message('customer',option+'でお願いします。');message('shop',data.timeQuestion);
       choices(data.times.map(time=>[time,()=>{
-        message('customer',time+'でお願いします。');
-        message('shop',`${option}・${time}についてのご相談ですね。\nスタッフが確認してお返事します。\n\nここまでが体験です。実際の予約・取り置き・送信は行われていません。`);
+        message('customer',industry==='shop'?time+'教えてください。':time+'でお願いします。');
+        message('shop',`${option}ですね。\n確認してお返事します。`);
+        const notice=document.createElement('p');notice.className='chat-demo-notice';
+        notice.textContent='ここまでが体験です。実際の予約・取り置き・送信は行われていません。';
+        $('#chat').append(notice);scrollChat();
         choices([['クーポンも見てみる',()=>showChat('coupon',true)],['最初から',()=>showChat('welcome',true)]],true);
+        scrollChat();
       }]),true);
     }]),focus);
   } else {
