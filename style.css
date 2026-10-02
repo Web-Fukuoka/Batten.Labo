@@ -65,5 +65,5 @@ body{line-break:strict;word-break:normal;overflow-wrap:break-word}
 
 /* Chat copy follows natural message lengths, with demo guidance outside the conversation. */
 .phone .bubble{ text-wrap:wrap; }
-.chat-demo-notice{margin:12px 4px 4px;padding:9px 10px;border-radius:8px;background:#ffffffb8;color:#43545a;font-size:.6875rem;line-height:1.7;text-align:center;}
+
 .mini-chat>div{min-width:0;text-wrap:wrap;line-break:strict;}

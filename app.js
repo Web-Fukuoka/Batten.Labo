@@ -107,7 +107,7 @@ function choices(items,focus=false) {
 }
 function showChat(scene='welcome',focus=false) {
   const data=industries[industry];
-  $('#chat').innerHTML='<div class="chat-day"><span>今日 · DEMO</span></div>';
+  $('#chat').innerHTML='<div class="chat-day"><span>今日</span></div>';
   $('#reply-options').replaceChildren();
   if(scene==='welcome'){
     message('shop',`友だち追加ありがとう！\n${data.name}です。`);
@@ -120,9 +120,6 @@ function showChat(scene='welcome',focus=false) {
       choices(data.times.map(time=>[time,()=>{
         message('customer',industry==='shop'?time+'教えてください。':time+'でお願いします。');
         message('shop',`${option}ですね。\n確認してお返事します。`);
-        const notice=document.createElement('p');notice.className='chat-demo-notice';
-        notice.textContent='ここまでが体験です。実際の予約・取り置き・送信は行われていません。';
-        $('#chat').append(notice);scrollChat();
         choices([['クーポンも見てみる',()=>showChat('coupon',true)],['最初から',()=>showChat('welcome',true)]],true);
         scrollChat();
       }]),true);
@@ -132,7 +129,7 @@ function showChat(scene='welcome',focus=false) {
     const row=document.createElement('div');row.className='message';
     const avatar=document.createElement('span');avatar.className='chat-avatar';setStoreIcon(avatar);
     const card=document.createElement('div');card.className='bubble chat-coupon';
-    const label=document.createElement('small');label.textContent='FRIENDS ONLY / DEMO';
+    const label=document.createElement('small');label.textContent='FRIENDS ONLY';
     const title=document.createElement('strong');title.textContent=data.coupon;
     const button=document.createElement('button');button.textContent='クーポンの詳細を見る';button.addEventListener('click',()=>{$('#coupon-benefit').textContent=data.coupon;$('#coupon-dialog').showModal();});
     card.append(label,title,button);row.append(avatar,card);$('#chat').append(row);
