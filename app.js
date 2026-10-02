@@ -25,7 +25,7 @@ if ('IntersectionObserver' in window) {
 // Keep the complete heading available to assistive technology during the reveal.
 const headline=$('.hero h1');
 headline.setAttribute('aria-label',headline.textContent);
-let characterIndex=0;
+const headlineCharacters=[];
 [...headline.children].forEach(line=>{
   line.setAttribute('aria-hidden','true');
   const walker=document.createTreeWalker(line,NodeFilter.SHOW_TEXT);
@@ -34,12 +34,25 @@ let characterIndex=0;
     const fragment=document.createDocumentFragment();
     for(const character of [...node.textContent]){
       const span=document.createElement('span');span.className='type-char';span.textContent=character;
-      span.style.setProperty('--type-delay',(600+characterIndex++*110)+'ms');fragment.append(span);
+      headlineCharacters.push(span);fragment.append(span);
     }
     node.replaceWith(fragment);
   });
 });
-setTimeout(()=>headline.classList.add('headline-typed'),700+characterIndex*110);
+// One clock drives every character; no competing delayed CSS animations.
+if(!motionOff){
+  headline.classList.add('is-typing');
+  let startTime;
+  let shown=0;
+  function revealHeadline(now){
+    if(startTime===undefined)startTime=now;
+    const count=motionOff?headlineCharacters.length:Math.min(headlineCharacters.length,Math.max(0,Math.floor((now-startTime-600)/110)+1));
+    while(shown<count)headlineCharacters[shown++].classList.add('is-revealed');
+    if(shown<headlineCharacters.length)requestAnimationFrame(revealHeadline);
+    else headline.classList.remove('is-typing');
+  }
+  requestAnimationFrame(revealHeadline);
+}
 $('.motion-toggle').addEventListener('click', () => setMotion(!motionOff));
 media.addEventListener('change', event => setMotion(event.matches));
 let scrollPending = false;

@@ -72,15 +72,14 @@ body{line-break:strict;word-break:normal;overflow-wrap:break-word}
 .return-highlight{color:var(--dark);background:linear-gradient(transparent 89%,#bde9b4 89%,#bde9b4 98%,transparent 98%);-webkit-box-decoration-break:clone;box-decoration-break:clone;}
 
 
-/* Reveal characters without changing text flow or reserving a moving cursor. */
-.js-motion .hero h1 .type-char{animation:headline-type .01s step-end both;animation-delay:var(--type-delay)}
-@keyframes headline-type{from{opacity:0}to{opacity:1}}
-.motion-off .hero h1 .type-char{animation:none;opacity:1}
-@media(prefers-reduced-motion:reduce){.js-motion .hero h1 .type-char{animation:none;opacity:1}}
+/* Keep layout stable while a single frame clock reveals the text. */
+.hero h1.is-typing .type-char{visibility:hidden}
+.hero h1.is-typing .type-char.is-revealed,.motion-off .hero h1 .type-char{visibility:visible}
+@media(prefers-reduced-motion:reduce){.hero h1.is-typing .type-char{visibility:visible}}
 
 .js-motion .hero .eyebrow{animation:partner-fade .9s ease-out both}
 @keyframes partner-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .motion-off .hero .eyebrow{animation:none;opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js-motion .hero .eyebrow{animation:none;opacity:1;transform:none}}
 
-.js-motion .hero h1.headline-typed .type-char{animation:none;opacity:1}
+
