@@ -39,7 +39,7 @@ function closeMenu() { menuButton.setAttribute('aria-expanded','false'); menuBut
 menuButton.addEventListener('click', () => { const open = menuButton.getAttribute('aria-expanded') !== 'true'; menuButton.setAttribute('aria-expanded',String(open)); menuButton.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く'); $('#mobile-menu').hidden = !open; });
 $$('#mobile-menu a').forEach(link=>link.addEventListener('click',closeMenu));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('#mobile-menu').hidden){closeMenu();menuButton.focus();}});
-matchMedia('(min-width: 901px)').addEventListener('change',event=>{if(event.matches)closeMenu();});
+matchMedia('(min-width: 1000px)').addEventListener('change',event=>{if(event.matches)closeMenu();});
 const contactDialog = $('#contact-dialog');
 function openContact(buildIndex = null, supportIndex = null) {
   let selection = '';
@@ -134,3 +134,4 @@ $$('[data-industry]').forEach(button=>button.addEventListener('click',()=>{
 }));
 $$('[data-chat]').forEach(button=>button.addEventListener('click',()=>showChat(button.dataset.chat)));
 showChat();estimate();
+
