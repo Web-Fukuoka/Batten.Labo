@@ -79,15 +79,24 @@ $$('dialog').forEach(dialog=>{
 });
 $('.close-coupon').addEventListener('click',()=>$('#coupon-dialog').close());
 const industries = {
- cafe:{name:'カフェ こもれび',avatar:'k.',intro:'季節のランチと、おいしいコーヒーを。\nお店からのお知らせをお届けします🌿',reserve:'予約の相談',question:'明日のランチ、ご希望の人数は？',options:['2名','3名'],timeQuestion:'ご希望の時間を教えてください。',times:['12:00','13:00'],coupon:'ドリンク1杯プレゼント'},
- salon:{name:'ヘアサロン hinata',avatar:'h.',intro:'あなたらしい髪と、心地よい時間を。\n季節のケアや空き状況をお届けします🌿',reserve:'予約の相談',question:'どんなメニューをご希望ですか？',options:['カット','カット＋カラー'],timeQuestion:'ご希望の時間帯を教えてください。',times:['午前','午後'],coupon:'トリートメント体験特典'},
- shop:{name:'暮らしの雑貨 ひより',avatar:'h.',intro:'毎日の暮らしに、ちいさなお気に入りを。\n新入荷やお店のお知らせをお届けします🌿',reserve:'商品を相談',question:'気になる商品を教えてください。',options:['マグカップ','トートバッグ'],timeQuestion:'どんなことを知りたいですか？',times:['在庫について','取り置きについて'],coupon:'お買い物 5% OFF'}
+ cafe:{name:'カフェ こもれび',icon:'coffee',brand:'komorebi',tagline:'COFFEE & LITTLE MOMENTS',intro:'季節のランチと、おいしいコーヒーを。\nお店からのお知らせをお届けします🌿',reserve:'予約の相談',question:'明日のランチ、ご希望の人数は？',options:['2名','3名'],timeQuestion:'ご希望の時間を教えてください。',times:['12:00','13:00'],coupon:'ドリンク1杯プレゼント'},
+ salon:{name:'ヘアサロン hinata',icon:'scissors',brand:'hinata',tagline:'HAIR & YOUR OWN STYLE',intro:'あなたらしい髪と、心地よい時間を。\n季節のケアや空き状況をお届けします🌿',reserve:'予約の相談',question:'どんなメニューをご希望ですか？',options:['カット','カット＋カラー'],timeQuestion:'ご希望の時間帯を教えてください。',times:['午前','午後'],coupon:'トリートメント体験特典'},
+ shop:{name:'暮らしの雑貨 ひより',icon:'shopping-bag',brand:'hiyori',tagline:'SMALL THINGS, HAPPY DAYS',intro:'毎日の暮らしに、ちいさなお気に入りを。\n新入荷やお店のお知らせをお届けします🌿',reserve:'商品を相談',question:'気になる商品を教えてください。',options:['マグカップ','トートバッグ'],timeQuestion:'どんなことを知りたいですか？',times:['在庫について','取り置きについて'],coupon:'お買い物 5% OFF'}
 };
 let industry='cafe';
+function setStoreIcon(element) {
+  const image=document.createElement('img');image.src='assets/icons/'+industries[industry].icon+'.svg';image.alt='';image.width=24;image.height=24;image.setAttribute('aria-hidden','true');element.replaceChildren(image);
+}
+function updateStoreIdentity() {
+  const data=industries[industry];$('.phone').dataset.theme=industry;
+  $('#store-name').textContent=data.name;setStoreIcon($('#store-avatar'));setStoreIcon($('#menu-store-icon'));
+  $('#menu-brand').textContent=data.brand;$('#menu-tagline').textContent=data.tagline;
+  $('#reserve-label').textContent=data.reserve;$('#reserve-en').textContent=industry==='shop'?'ASK US':'RESERVE';
+}
 function scrollChat() { $('#chat').scrollTo({top:$('#chat').scrollHeight,behavior:motionOff?'auto':'smooth'}); }
 function message(who,text) {
   const row=document.createElement('div');row.className='message '+(who==='customer'?'customer':'');
-  const avatar=document.createElement('span');avatar.className=who==='customer'?'read':'chat-avatar';avatar.textContent=who==='customer'?'既読\n12:00':industries[industry].avatar;avatar.setAttribute('aria-hidden','true');
+  const avatar=document.createElement('span');avatar.className=who==='customer'?'read':'chat-avatar';if(who==='customer')avatar.textContent='既読\n12:00';else setStoreIcon(avatar);avatar.setAttribute('aria-hidden','true');
   const bubble=document.createElement('div');bubble.className='bubble';bubble.textContent=text;
   row.append(avatar,bubble);$('#chat').append(row);scrollChat();
 }
@@ -117,7 +126,7 @@ function showChat(scene='welcome',focus=false) {
   } else {
     message('shop','次のご来店に、ちょっとうれしい特典です。\nタップして詳細を見てみてください。');
     const row=document.createElement('div');row.className='message';
-    const avatar=document.createElement('span');avatar.className='chat-avatar';avatar.textContent=data.avatar;
+    const avatar=document.createElement('span');avatar.className='chat-avatar';setStoreIcon(avatar);
     const card=document.createElement('div');card.className='bubble chat-coupon';
     const label=document.createElement('small');label.textContent='FRIENDS ONLY / DEMO';
     const title=document.createElement('strong');title.textContent=data.coupon;
@@ -130,8 +139,8 @@ function showChat(scene='welcome',focus=false) {
 $$('[data-industry]').forEach(button=>button.addEventListener('click',()=>{
   industry=button.dataset.industry;const data=industries[industry];
   $$('[data-industry]').forEach(el=>el.setAttribute('aria-pressed',String(el===button)));
-  $('#store-name').textContent=data.name;$('#store-avatar').textContent=data.avatar;$('#reserve-label').textContent=data.reserve;showChat();
+  updateStoreIdentity();showChat();
 }));
 $$('[data-chat]').forEach(button=>button.addEventListener('click',()=>showChat(button.dataset.chat)));
-showChat();estimate();
+updateStoreIdentity();showChat();estimate();
 
