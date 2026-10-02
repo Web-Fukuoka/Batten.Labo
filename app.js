@@ -79,9 +79,9 @@ $$('dialog').forEach(dialog=>{
 });
 $('.close-coupon').addEventListener('click',()=>$('#coupon-dialog').close());
 const industries = {
- cafe:{name:'カフェ こもれび',icon:'coffee',brand:'komorebi',tagline:'COFFEE & LITTLE MOMENTS',intro:'季節のランチと、おいしいコーヒーを。\nお店からのお知らせをお届けします🌿',reserve:'予約の相談',question:'明日のランチ、ご希望の人数は？',options:['2名','3名'],timeQuestion:'ご希望の時間を教えてください。',times:['12:00','13:00'],coupon:'ドリンク1杯プレゼント'},
- salon:{name:'ヘアサロン hinata',icon:'scissors',brand:'hinata',tagline:'HAIR & YOUR OWN STYLE',intro:'あなたらしい髪と、心地よい時間を。\n季節のケアや空き状況をお届けします🌿',reserve:'予約の相談',question:'どんなメニューをご希望ですか？',options:['カット','カット＋カラー'],timeQuestion:'ご希望の時間帯を教えてください。',times:['午前','午後'],coupon:'トリートメント体験特典'},
- shop:{name:'暮らしの雑貨 ひより',icon:'shopping-bag',brand:'hiyori',tagline:'SMALL THINGS, HAPPY DAYS',intro:'毎日の暮らしに、ちいさなお気に入りを。\n新入荷やお店のお知らせをお届けします🌿',reserve:'商品を相談',question:'気になる商品を教えてください。',options:['マグカップ','トートバッグ'],timeQuestion:'どんなことを知りたいですか？',times:['在庫について','取り置きについて'],coupon:'お買い物 5% OFF'}
+ cafe:{name:'カフェ こもれび',icon:'coffee',brand:'komorebi',tagline:'COFFEE & LITTLE MOMENTS',intro:'季節のランチとコーヒーを。\nお店の便りをお届けします🌿',reserve:'予約の相談',question:'明日のランチ、ご希望の人数は？',options:['2名','3名'],timeQuestion:'ご希望の時間を教えてください。',times:['12:00','13:00'],coupon:'ドリンク1杯プレゼント'},
+ salon:{name:'ヘアサロン hinata',icon:'scissors',brand:'hinata',tagline:'HAIR & YOUR OWN STYLE',intro:'あなたらしい髪と、癒しを。\nケア情報や空き状況をお届け🌿',reserve:'予約の相談',question:'どんなメニューをご希望ですか？',options:['カット','カット＋カラー'],timeQuestion:'ご希望の時間帯を教えてください。',times:['午前','午後'],coupon:'トリートメント体験特典'},
+ shop:{name:'暮らしの雑貨 ひより',icon:'shopping-bag',brand:'hiyori',tagline:'SMALL THINGS, HAPPY DAYS',intro:'暮らしに、小さなお気に入り。\n新入荷のお知らせをお届け🌿',reserve:'商品を相談',question:'気になる商品を教えてください。',options:['マグカップ','トートバッグ'],timeQuestion:'どんなことを知りたいですか？',times:['在庫について','取り置きについて'],coupon:'お買い物 5% OFF'}
 };
 let industry='cafe';
 function setStoreIcon(element) {
@@ -110,7 +110,7 @@ function showChat(scene='welcome',focus=false) {
   $('#chat').innerHTML='<div class="chat-day"><span>今日 · DEMO</span></div>';
   $('#reply-options').replaceChildren();
   if(scene==='welcome'){
-    message('shop',`友だち追加ありがとうございます。\n${data.name}です。`);
+    message('shop',`友だち追加ありがとう！\n${data.name}です。`);
     message('shop',data.intro);
     choices([[data.reserve+'をしたい',()=>showChat('reserve',true)],['クーポンを見たい',()=>showChat('coupon',true)]],focus);
   } else if(scene==='reserve'){
@@ -124,7 +124,7 @@ function showChat(scene='welcome',focus=false) {
       }]),true);
     }]),focus);
   } else {
-    message('shop','次のご来店に、ちょっとうれしい特典です。\nタップして詳細を見てみてください。');
+    message('shop','次のご来店に、うれしい特典。\nタップして特典をチェック。');
     const row=document.createElement('div');row.className='message';
     const avatar=document.createElement('span');avatar.className='chat-avatar';setStoreIcon(avatar);
     const card=document.createElement('div');card.className='bubble chat-coupon';
