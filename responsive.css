@@ -1,0 +1,136 @@
+/* Responsive layout safeguards, loaded after the visual design. */
+:root { --header-height: 100px; }
+html { scroll-padding-top: calc(var(--header-height) + 16px); }
+.hero > *, .approach-grid > *, .pricing-heading > *, .calculator > *,
+.plan-grid > *, .support-grid > *, .flow-grid > *, .faq-section > *,
+.approach-item > div { min-width: 0; }
+.hero-description .phrase { display: inline; }
+.contact-inner h2 { margin-inline: auto; }
+.calculator select, dialog textarea { font-size: 1rem; }
+.calculator-note a { white-space: normal; }
+.menu-toggle, .dialog-close { width: 44px; height: 44px; flex-shrink: 0; }
+.reply-options button, .support-card button, .text-button { min-height: 44px; }
+.text-button { display: inline-flex; align-items: center; }
+dialog {
+  width: min(470px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  overscroll-behavior: contain;
+  padding: 36px 28px 28px;
+  scroll-padding-block: 16px;
+}
+dialog textarea { min-height: 160px; }
+body:has(dialog[open]) { overflow: hidden; }
+body:has(dialog[open]) .mobile-cta { visibility: hidden; }
+.phone-wrap { width: min(100%, 336px); }
+.phone { width: 100%; }
+
+/* Keep navigation on one line until the full set of links has room. */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .header { gap: 12px; padding-inline: 20px; }
+  .desktop-nav { gap: 12px; font-size: 12px; flex-wrap: nowrap; }
+  .header-actions { gap: 8px; }
+  .header .button { padding-inline: 12px; font-size: 13px; }
+  .logo { width: 92px; }
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hero h1 { font-size: clamp(1.875rem, 8.7cqi, 3rem); }
+  .plan-card, .plan-card.featured { padding-inline: 20px; }
+  .support-card > p { font-size: 1.875rem; }
+  .support-card > p span { display: inline-block; margin-left: 4px; }
+}
+
+@media (max-width: 999px) {
+  .mobile-menu {
+    top: var(--header-height);
+    max-height: calc(100dvh - var(--header-height) - 16px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .mobile-menu a { min-height: 48px; }
+  .phone-wrap { transform: none; }
+  .hero-visual { scroll-margin-top: 16px; }
+}
+
+/* Narrow tablets need stacked previews, while wider tablets keep two columns. */
+@media (min-width: 600px) and (max-width: 767px) {
+  .journey-card { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .journey-preview { width: min(100%, 380px); justify-self: center; }
+  .pricing-heading { flex-direction: column; gap: 20px; }
+  .plan-card, .plan-card.featured { column-gap: 20px; padding: 24px; }
+  .plan-purpose { min-height: 0; }
+  .calculator { grid-template-columns: minmax(0, 1fr); }
+  .calculator-intro { display: block; }
+  .calculator-intro .section-label { margin-bottom: 14px; }
+  .calculator-intro p { margin-top: 12px; }
+  .calculator-result { border-left: 0; border-top: 1px solid #5d785f; padding: 22px 0 0; }
+}
+
+@media (max-width: 599px) {
+  :root { --header-height: 72px; }
+  html { scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+  .header {
+    height: var(--header-height);
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  .logo { height: 68px; }
+  .logo img { width: 80px; height: 80px; }
+  .header-actions { gap: 12px; }
+  .header-actions > .button { display: none; }
+  .section-wrap { padding-inline: clamp(16px, 5vw, 24px); }
+  .hero { padding-top: 24px; gap: 28px; }
+  .hero h1 { font-size: clamp(1.5rem, 8.8cqi, 2.5rem); line-height: 1.55; }
+  .hero-description { line-height: 1.85; }
+  .hero-buttons { gap: 10px; margin-top: 22px; }
+  .hero-buttons .text-button { min-height: 44px; }
+  .starting-price { margin-top: 16px; }
+  .visual-ground { padding: 18px 10px; }
+  .phone-wrap { width: min(100%, 336px); }
+  .phone {
+    width: 100%; height: 640px;
+    box-shadow: 4px 10px 0 #9ac89e59, 0 14px 24px #244e2b20;
+  }
+  .reply-options button { white-space: normal; }
+  .industry-tabs { flex-wrap: wrap; }
+  .industry-tabs button { flex: 1 1 85px; }
+  .visual-label { flex-wrap: wrap; gap: 4px 12px; }
+  .plan-flag { max-width: calc(100% - 32px); white-space: normal; text-align: center; }
+  .plan-price, .support-card > p { white-space: normal; }
+  .support-card button { grid-column: auto; }
+  .scope-note, .calculator { padding: 20px; }
+  .contact-inner { padding-inline: 20px; }
+  .contact-inner h2 { max-width: none; }
+  .footer { padding-bottom: calc(112px + env(safe-area-inset-bottom)); }
+  .footer > p { flex: 1 1 180px; }
+  .mobile-cta {
+    gap: 12px;
+    padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  }
+  .mobile-cta > a { min-width: 0; font-size: .75rem; line-height: 1.5; }
+  .mobile-cta > a small { display: block; margin-left: 0; }
+  .mobile-cta .button { min-height: 48px; flex-shrink: 0; padding-inline: 16px; }
+  dialog { padding: 40px 20px 24px; }
+  dialog h2 { font-size: 1.5rem; }
+  dialog > p { font-size: .875rem; }
+}
+
+@media (max-width: 359px) {
+  .hero-lead { font-size: .9375rem; }
+  .phone { padding: 5px; border-radius: 32px; }
+  .phone-head { padding-inline: 6px; gap: 5px; }
+  .phone-head b { font-size: .75rem; }
+  .store-avatar { width: 30px; height: 30px; }
+  .menu-signature > small { max-width: 95px; letter-spacing: .3px; }
+  .journey-card, .plan-card, .plan-card.featured { padding-inline: 18px; }
+  .mobile-cta { gap: 8px; }
+  .mobile-cta .button { padding-inline: 12px; font-size: .75rem; }
+}
+
+@media (hover: none) {
+  button:hover, .button:hover, .rich-menu button:hover { transform: none; }
+}
+@media (max-height: 500px) and (max-width: 999px) {
+  :root { --header-height: 64px; }
+  .header { height: var(--header-height); }
+  .logo, .logo img { height: 60px; }
+  dialog { max-height: calc(100dvh - 16px); margin-block: auto; }
+}
