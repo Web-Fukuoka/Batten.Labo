@@ -2,8 +2,8 @@
 
 公開先: https://web-fukuoka.github.io/Batten.Labo/
 
-トップページは旧 batten-demo 版を正式採用しました。index.html、style.css、app.js、assets/brand-icon.webp が現在のサイトを構成します。料金はindex.htmlとapp.jsの料金データを合わせて更新してください。
+index.html は街のアニメーションを使った入口です。スキップとメインボタンは service.html へ進みます。service.html が従来のサービス紹介で、style.css、app.js、assets を使用します。
 
-batten-demo/index.html はトップへ、price/index.html はトップの #plans へ移動します。旧ページのリンク互換性のため残しています。
+従来の #plans などの入口URL、price/index.html、batten-demo/index.html はサービス紹介へ誘導します。
 
-GitHub Pagesはmainブランチの更新後に自動公開します。元のサイトはGit履歴に保存されています。
+GitHub Pagesはmainブランチの更新後に自動公開します。
